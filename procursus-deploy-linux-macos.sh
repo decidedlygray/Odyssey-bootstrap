@@ -54,12 +54,11 @@ if [[ -f "/.bootstrapped" ]]; then
     exit 1
 fi
 
-# TODO: Remove comments. Temporarily disabling to re-test a failed install
-#if [[ -f "/.installed_odyssey" ]]; then
-#        echo "Error: Odysseyra1n is already installed."
-#        rm ./bootstrap* ./*.deb odysseyra1n-install.bash
-#        exit 1
-#fi
+if [[ -f "/.installed_odyssey" ]]; then
+        echo "Error: Odysseyra1n is already installed."
+        rm ./bootstrap* ./*.deb odysseyra1n-install.bash
+        exit 1
+fi
 
 VER=$(/binpack/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)
 if [[ "${VER%%.*}" -ge 12 ]] && [[ "${VER%%.*}" -lt 13 ]]; then
